@@ -9,5 +9,8 @@
         <module name="remainder" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="remainder" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
