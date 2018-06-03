@@ -1,4 +1,4 @@
-package tk.remainder;
+package tk.remainder.controller;
 
 import tk.remainder.domain.Message;
 import tk.remainder.repos.MessageRepo;
@@ -11,20 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MessageRepo messageRepo;
 
-    @GetMapping("/greeting")
-    public String greeting(
-            @RequestParam(name="name", required=false, defaultValue="World") String name,
-            Map<String, Object> model
-    ) {
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepo.findAll();
 
@@ -33,7 +29,7 @@ public class GreetingController {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
 
@@ -52,6 +48,22 @@ public class GreetingController {
 
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepo.findByTag(filter);
+        } else {
+            messages = messageRepo.findAll();
+        }
+
+        model.put("messages", messages);
+
+        return "main";
+    }
+    @PostMapping("delete")
+    public String delete(@RequestParam String delete, Map<String, Object> model) {
+        Iterable<Message> messages;
+
+        if (delete != null && !delete.isEmpty()) {
+         //   messageRepo.deleteById(Long.parseLong(delete));
+            // messages = messageRepo.findAll();
+            messages = messageRepo.findByTag(delete);
         } else {
             messages = messageRepo.findAll();
         }
