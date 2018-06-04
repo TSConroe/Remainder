@@ -1,0 +1,4 @@
+package remainder.repos;
+
+public class MessageRepo {
+}

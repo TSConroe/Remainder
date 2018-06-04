@@ -14,7 +14,18 @@ public class Message {
     private String text;
     private String tag;
 
+    public  User autor;
+
+    public User getAutor() {
+        return autor;
+    }
+
+    public void setAutor(User autor) {
+        this.autor = autor;
+    }
+
     public Message() {
+
     }
 
     public Message(String text, String tag) {
@@ -45,4 +56,5 @@ public class Message {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
 }

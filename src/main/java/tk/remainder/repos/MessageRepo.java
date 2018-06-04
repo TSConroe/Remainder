@@ -1,7 +1,7 @@
 package tk.remainder.repos;
 
-import tk.remainder.domain.Message;
 import org.springframework.data.repository.CrudRepository;
+import tk.remainder.domain.Message;
 
 import java.util.List;
 
