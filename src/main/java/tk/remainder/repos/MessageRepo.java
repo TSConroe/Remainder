@@ -1,10 +1,9 @@
 package tk.remainder.repos;
 
-import tk.remainder.domain.Message;
 import org.springframework.data.repository.CrudRepository;
+import tk.remainder.domain.Message;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MessageRepo extends CrudRepository<Message, Long> {
 
