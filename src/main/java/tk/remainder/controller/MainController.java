@@ -61,9 +61,10 @@ public class MainController {
         Iterable<Message> messages;
 
         if (delete != null && !delete.isEmpty()) {
-         //   messageRepo.deleteById(Long.parseLong(delete));
+           messageRepo.deleteAll();
+          
             // messages = messageRepo.findAll();
-            messages = messageRepo.findByTag(delete);
+            messages = messageRepo.findAll();
         } else {
             messages = messageRepo.findAll();
         }
