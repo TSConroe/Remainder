@@ -1,11 +1,13 @@
 package tk.remainder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tk.remainder.domain.Message;
+import tk.remainder.domain.User;
 import tk.remainder.repos.MessageRepo;
 
 import java.util.Map;
@@ -30,8 +32,8 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
-        Message message = new Message(text, tag);
+    public String add(@AuthenticationPrincipal User user, @RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
+        Message message = new Message(text, tag, user);
 
         messageRepo.save(message);
 
@@ -61,9 +63,10 @@ public class MainController {
         Iterable<Message> messages;
 
         if (delete != null && !delete.isEmpty()) {
-         //   messageRepo.deleteById(Long.parseLong(delete));
+           messageRepo.deleteAll();
+
             // messages = messageRepo.findAll();
-            messages = messageRepo.findByTag(delete);
+            messages = messageRepo.findAll();
         } else {
             messages = messageRepo.findAll();
         }

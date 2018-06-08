@@ -18,19 +18,21 @@
     <form method="post" action="filter">
         <input type="text" name="filter">
         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+
         <button type="submit">Найти</button>
          </form>
     <span> Удаление сообщений</span>
     <form method="post" action="delete">
-        <input type="text" name="delete">
+     <!--  <input type="text" name="delete"> -->
         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-        <button type="submit">Удалить по ид</button>
+        <button type="submit">Очистить все</button>
         </form>
     {{#messages}}
     <div>
         <b>{{id}}</b>
         <span>{{text}}</span>
         <i>{{tag}}</i>
+        <i> {{autorName}}</i>
     </div>
     {{/messages}}
 </body>
