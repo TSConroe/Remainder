@@ -1,15 +1,18 @@
 package tk.remainder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import tk.remainder.domain.Message;
 import tk.remainder.domain.User;
 import tk.remainder.repos.MessageRepo;
 
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -32,7 +35,7 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(@AuthenticationPrincipal User user, @RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
+    public String add(@AuthenticationPrincipal User user,@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag, user);
 
         messageRepo.save(message);
